@@ -1,65 +1,66 @@
-Copyright 2024 Gauthier Niglio - Chiara
+# Chiara
 
-I created the Chiara font because I want to create a font who's matching with interface.
-Chiara is optimized to be used in interface.
-Chiara is a variable font.
+Chiara is a variable font designed for interfaces. Built with legibility and rhythm in mind, it adapts to a wide range of weights through a single variable axis — making it practical for both UI and display use.
 
+**Axis:** Weight (`wght`) — 100 to 900  
+**Formats:** `.woff2` (web), `.woff` (web fallback), `.ttf` (desktop)
 
-Installation
-1. Install the font file ChiaraVF.ttf
-2. Use your app's font picker to view the font family and all the available styles
+---
 
-For web you can use the .woff and .woff2 files in the web folder.
+## Web usage
 
-Also you will find all the styles in static version in the static folder.
+```css
+@font-face {
+  font-family: 'Chiara';
+  src: url('https://cdn.jsdelivr.net/gh/gauthierniglio/chiara-font@v1.0/web/ChiaraVF.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/gauthierniglio/chiara-font@v1.0/web/ChiaraVF.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+```
 
+Then use the weight axis freely:
 
-Learn more about variable fonts
+```css
+h1 { font-family: 'Chiara', sans-serif; font-weight: 700; }
+p  { font-family: 'Chiara', sans-serif; font-weight: 400; }
 
-General
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
+/* Or with font-variation-settings for fine-grained control */
+.display { font-variation-settings: 'wght' 850; }
+```
 
-Desktop Apps
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+---
 
-Online
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+## Desktop installation
 
-Installing fonts
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+1. Download `ChiaraVF.ttf` from this repository
+2. **macOS** — double-click the file → Install Font
+3. **Windows** — right-click → Install
+4. **Linux** — copy to `~/.local/share/fonts/` then run `fc-cache -f`
 
-Android Apps
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+Static versions (individual weight files) are available in the `/static` folder for apps that don't support variable fonts.
 
+---
 
-License
-Chiara is a free font under the Creative Commons licence
-Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
+## License
 
-You are free to: Share — copy and redistribute the material in any medium or format for any purpose, even commercially. The licensor cannot revoke these freedoms as long as you follow the license terms.
+Chiara is free to use under the **Creative Commons Attribution-NoDerivatives 4.0 International** license (CC BY-ND 4.0).
 
+**You are free to:**
+- Use Chiara in any project, including commercial work
+- Share and redistribute the font files as-is
 
-Under the following terms:
+**Under the following terms:**
+- **Attribution** — Credit must be given to Gauthier Niglio with a link to this repository
+- **No derivatives** — You may not distribute modified versions of the font
 
-Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+→ Full license text: [creativecommons.org/licenses/by-nd/4.0](https://creativecommons.org/licenses/by-nd/4.0/)
 
-NoDerivatives — If you remix, transform, or build upon the material, you may not distribute the modified material.
+---
 
-For more information about the licence:
-https://creativecommons.org/licenses/by-nd/4.0/
+## Contact & feedback
 
-Support
-If you want to give feedback about Chiara, please contact me contact@gauthierniglio.fr
+Questions or feedback? Reach out at [contact@gauthierniglio.fr](mailto:contact@gauthierniglio.fr)
 
-Version
-1.0
-
-All right reserved Gauthier Niglio
+© 2024 Gauthier Niglio
