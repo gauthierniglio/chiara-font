@@ -557,14 +557,13 @@ function getWeights(wmin, wmax, rows) {
 }
 
 function updateRowsMax() {
-  const maxRows = Math.floor((state.wmax - state.wmin) / 50) + 1;
+  const maxRows = Math.max(1, Math.floor((state.wmax - state.wmin) / 50) + 1);
   const slider = document.getElementById('rows');
+  slider.min = 1;
   slider.max = maxRows;
-  if (state.rows > maxRows) {
-    state.rows = maxRows;
-    slider.value = maxRows;
-    document.getElementById('rows-v').textContent = maxRows;
-  }
+  state.rows = Math.min(Math.max(1, state.rows), maxRows);
+  slider.value = state.rows;
+  document.getElementById('rows-v').textContent = state.rows;
 }
 
 function render(){
