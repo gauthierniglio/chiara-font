@@ -34,8 +34,8 @@ p  { font-family: 'Chiara', sans-serif; font-weight: 400; }
 
 ## Desktop installation
 
-1. Download `ChiaraVF.ttf` from this repository
-2. **macOS** — double-click the file → Install Font
+1. Download `ChiaraVF.ttf` from the root of this repository
+   — or pick a specific weight from the `/static` folder (Regular, Medium… Black)2. **macOS** — double-click the file → Install Font
 3. **Windows** — right-click → Install
 4. **Linux** — copy to `~/.local/share/fonts/` then run `fc-cache -f`
 
