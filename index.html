@@ -33,6 +33,7 @@
     color: var(--ink);
     font-family: var(--chiara);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   /* NAV */
@@ -80,12 +81,16 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    max-width: 100vw;
   }
 
   .hero-stripes {
     flex: 1;
     overflow: hidden;
     cursor: crosshair;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .stripe-row {
@@ -96,6 +101,8 @@
     font-family: var(--chiara);
     color: var(--ink);
     transition: color 0.3s;
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-controls {
@@ -385,8 +392,8 @@
     </div>
     <div class="ctrl-group">
       <label>Min</label>
-      <input type="range" id="wmin" min="100" max="900" step="50" value="100">
-      <span class="val" id="wmin-v">100</span>
+      <input type="range" id="wmin" min="100" max="900" step="50" value="400">
+      <span class="val" id="wmin-v">400</span>
     </div>
     <div class="ctrl-group">
       <label>Max</label>
@@ -400,7 +407,7 @@
     </div>
     <div class="ctrl-group">
       <label>Rows</label>
-      <input type="range" id="rows" min="3" max="16" step="1" value="8">
+      <input type="range" id="rows" min="1" max="11" step="1" value="8">
       <span class="val" id="rows-v">8</span>
     </div>
     <div class="ctrl-group">
@@ -425,18 +432,9 @@
   </div>
 
   <div class="specimen-grid">
-    <div class="specimen-row">
-      <span class="specimen-text" style="font-size:72px;font-variation-settings:'wght' 100;letter-spacing:-0.03em;">Interface</span>
-      <span class="specimen-meta">Thin · 100</span>
-    </div>
-    <div class="specimen-row">
-      <span class="specimen-text" style="font-size:64px;font-variation-settings:'wght' 200;letter-spacing:-0.02em;">Interface</span>
-      <span class="specimen-meta">ExtraLight · 200</span>
-    </div>
-    <div class="specimen-row">
-      <span class="specimen-text" style="font-size:56px;font-variation-settings:'wght' 300;letter-spacing:-0.02em;">Interface</span>
-      <span class="specimen-meta">Light · 300</span>
-    </div>
+    
+    
+    
     <div class="specimen-row">
       <span class="specimen-text" style="font-size:48px;font-variation-settings:'wght' 400;">Interface</span>
       <span class="specimen-meta">Regular · 400</span>
@@ -527,7 +525,7 @@
 </section>
 
 <footer>
-  <p>Chiara — Variable Font by <a href="mailto:contact@gauthierniglio.fr">Gauthier Niglio</a></p>
+  <p>Chiara — Variable Font by <a href="https://gauthierniglio.framer.website/" target="_blank">Gauthier Niglio</a></p>
   <p>CC BY-ND 4.0 · <a href="https://github.com/gauthierniglio/chiara-font" target="_blank">github.com/gauthierniglio/chiara-font</a></p>
 </footer>
 
@@ -540,20 +538,45 @@ const PALETTES = [
   { bg: '#2C1810', fg: '#F0C8A8' },
 ];
 
-let state = { text:'Chiara', wmin:100, wmax:900, sz:64, rows:8, palette:0 };
+let state = { text:'Chiara', wmin:400, wmax:900, sz:64, rows:8, palette:0 };
 
 function lerp(a,b,t){ return a+(b-a)*t; }
 
+function getWeights(wmin, wmax, rows) {
+  // Max possible steps of 50 between wmin and wmax
+  const maxRows = Math.floor((wmax - wmin) / 50) + 1;
+  const clampedRows = Math.min(rows, maxRows);
+  if (clampedRows <= 1) return [wmin];
+  const step = Math.floor((wmax - wmin) / (clampedRows - 1) / 50) * 50 || 50;
+  const weights = [];
+  for (let i = 0; i < clampedRows; i++) {
+    const w = Math.min(wmax, wmin + i * step);
+    if (!weights.includes(w)) weights.push(w);
+  }
+  return weights;
+}
+
+function updateRowsMax() {
+  const maxRows = Math.floor((state.wmax - state.wmin) / 50) + 1;
+  const slider = document.getElementById('rows');
+  slider.max = maxRows;
+  if (state.rows > maxRows) {
+    state.rows = maxRows;
+    slider.value = maxRows;
+    document.getElementById('rows-v').textContent = maxRows;
+  }
+}
+
 function render(){
-  const { text, wmin, wmax, sz, rows, palette } = state;
+  const { text, wmin, wmax, sz, palette } = state;
   const { bg, fg } = PALETTES[palette];
   const container = document.getElementById('stripes');
   document.getElementById('hero').style.background = bg;
   container.innerHTML = '';
+  const weights = getWeights(wmin, wmax, state.rows);
   const repeat = Math.ceil(window.innerWidth / (sz * 0.55 * (text.length||1))) + 3;
-  for(let i=0;i<rows;i++){
-    const t = rows<=1 ? 0.5 : i/(rows-1);
-    const w = Math.round(lerp(wmin, wmax, t));
+  for(let i=0;i<weights.length;i++){
+    const w = weights[i];
     const row = document.createElement('span');
     row.className = 'stripe-row';
     row.style.fontSize = sz+'px';
@@ -595,8 +618,14 @@ function bind(id, key, valId){
 }
 
 document.getElementById('txt').oninput = function(){ state.text=this.value||'Chiara'; render(); };
-bind('wmin','wmin','wmin-v');
-bind('wmax','wmax','wmax-v');
+
+function bindWAxis(id, key, valId){
+  const el = document.getElementById(id);
+  const vl = document.getElementById(valId);
+  el.oninput = ()=>{ state[key]=+el.value; if(vl) vl.textContent=el.value; updateRowsMax(); render(); };
+}
+bindWAxis('wmin','wmin','wmin-v');
+bindWAxis('wmax','wmax','wmax-v');
 bind('sz','sz','sz-v');
 bind('rows','rows','rows-v');
 
@@ -606,6 +635,7 @@ window.addEventListener('scroll',()=>{
 window.addEventListener('resize', render);
 
 buildDots();
+updateRowsMax();
 render();
 
 function switchTab(id){
