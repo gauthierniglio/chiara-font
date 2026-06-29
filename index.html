@@ -373,8 +373,6 @@
   .tab-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
   .code-panel {
     display: none;
-    width: 100%;
-    max-width: 100%;
     background: var(--ink);
     border-radius: 0 4px 4px 4px;
     padding: 28px;
@@ -388,10 +386,6 @@
     color: #E8E0D0;
     white-space: pre;
     overflow-x: auto;
-    white-space: pre;
-    overflow-x: auto;
-    max-width: 0;
-    min-width: 100%;
   }
   .code-panel .cm { color: #7A6E60; }
   .code-panel .kw { color: #C8A882; }
@@ -439,6 +433,243 @@
     .ctrl-group input[type=range] { width: 70px; }
     .ctrl-divider { display: none; }
   }
+
+  /* ─── IN USE ─── */
+  .inuse-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .inuse-tab {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s;
+  }
+  .inuse-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .inuse-panel { display: none; }
+  .inuse-panel.active { display: block; }
+
+  /* shared font */
+  .iu-dashboard, .iu-landing, .iu-article,
+  .iu-dashboard *, .iu-landing *, .iu-article * {
+    font-family: var(--chiara);
+  }
+
+  /* ── DASHBOARD ── */
+  .iu-dashboard {
+    display: flex;
+    height: 560px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #FAFAF8;
+  }
+  .iu-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background: #F0EBE2;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 32px;
+  }
+  .iu-logo { font-variation-settings: 'wght' 700; font-size: 18px; color: #1A1208; letter-spacing: -0.02em; }
+  .iu-sidenav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .iu-navitem {
+    font-variation-settings: 'wght' 400;
+    font-size: 13px;
+    color: #7A6E60;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    text-decoration: none;
+    display: block;
+  }
+  .iu-navitem.active { background: #E8E0D0; color: #1A1208; font-variation-settings: 'wght' 500; }
+  .iu-sidebar-footer { display: flex; align-items: center; gap: 10px; }
+  .iu-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #1A1208;
+    color: #F5F0E8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-variation-settings: 'wght' 600;
+    flex-shrink: 0;
+  }
+  .iu-name { font-size: 12px; font-variation-settings: 'wght' 500; color: #1A1208; }
+  .iu-role { font-size: 11px; color: #7A6E60; font-variation-settings: 'wght' 400; }
+  .iu-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .iu-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .iu-page-title { font-size: 16px; font-variation-settings: 'wght' 600; color: #1A1208; }
+  .iu-topbar-right { display: flex; gap: 8px; align-items: center; }
+  .iu-badge {
+    font-size: 11px; font-variation-settings: 'wght' 400;
+    color: #7A6E60; background: #E8E0D0;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .iu-btn-primary {
+    font-size: 12px; font-variation-settings: 'wght' 500;
+    color: #F5F0E8; background: #1A1208;
+    padding: 6px 14px; border-radius: 6px; cursor: pointer;
+    border: none;
+  }
+  .iu-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; padding: 20px 24px;
+  }
+  .iu-stat-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px;
+  }
+  .iu-stat-label { font-size: 11px; color: #7A6E60; font-variation-settings: 'wght' 400; margin-bottom: 6px; }
+  .iu-stat-value { font-size: 22px; font-variation-settings: 'wght' 700; color: #1A1208; letter-spacing: -0.02em; }
+  .iu-stat-delta { font-size: 11px; margin-top: 4px; font-variation-settings: 'wght' 500; }
+  .iu-stat-delta.up { color: #3B8C5A; }
+  .iu-stat-delta.down { color: #C0392B; }
+  .iu-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 24px 24px; flex: 1; overflow: hidden; }
+  .iu-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow: hidden; }
+  .iu-card-title { font-size: 13px; font-variation-settings: 'wght' 600; color: #1A1208; margin-bottom: 14px; }
+  .iu-table { display: flex; flex-direction: column; gap: 0; }
+  .iu-table-row {
+    display: grid; grid-template-columns: 1fr auto auto;
+    gap: 12px; padding: 8px 0;
+    border-bottom: 1px solid #F0EBE2;
+    font-size: 12px; color: #1A1208;
+    font-variation-settings: 'wght' 400;
+    align-items: center;
+  }
+  .iu-table-row.header { font-variation-settings: 'wght' 500; color: #7A6E60; font-size: 11px; }
+  .iu-pill {
+    font-size: 10px; font-variation-settings: 'wght' 500;
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .iu-pill.green { background: #E8F5E9; color: #2E7D32; }
+  .iu-pill.yellow { background: #FFF8E1; color: #F57F17; }
+  .iu-pill.blue { background: #E3F2FD; color: #1565C0; }
+  .iu-pill.gray { background: #F5F5F5; color: #757575; }
+  .iu-activity { display: flex; flex-direction: column; gap: 16px; }
+  .iu-activity-item { display: flex; gap: 10px; align-items: flex-start; }
+  .iu-activity-dot { width: 6px; height: 6px; border-radius: 50%; background: #C8A882; flex-shrink: 0; margin-top: 5px; }
+  .iu-activity-text { font-size: 12px; font-variation-settings: 'wght' 400; color: #1A1208; }
+  .iu-activity-time { font-size: 11px; color: #7A6E60; margin-top: 2px; }
+
+  /* ── LANDING ── */
+  .iu-landing {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0D0D0D;
+    color: #F0EBE2;
+  }
+  .iu-landing-nav {
+    display: flex; align-items: center; gap: 32px;
+    padding: 20px 40px;
+    border-bottom: 1px solid #2A2A2A;
+  }
+  .iu-landing-brand { font-variation-settings: 'wght' 700; font-size: 18px; color: #F0EBE2; letter-spacing: -0.02em; flex-shrink: 0; }
+  .iu-landing-navlinks { display: flex; gap: 24px; flex: 1; }
+  .iu-landing-navlinks a { font-size: 13px; color: #888; font-variation-settings: 'wght' 400; cursor: pointer; }
+  .iu-landing-cta-sm {
+    font-size: 12px; font-variation-settings: 'wght' 500;
+    color: #0D0D0D; background: #F0EBE2;
+    border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .iu-landing-hero { padding: 64px 40px 48px; }
+  .iu-landing-tag {
+    display: inline-block;
+    font-size: 11px; font-variation-settings: 'wght' 500;
+    color: #C8A882; border: 1px solid #3A3028;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+  }
+  .iu-landing-headline {
+    font-size: clamp(42px, 6vw, 72px);
+    font-variation-settings: 'wght' 700;
+    color: #F0EBE2;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .iu-landing-headline em {
+    font-style: normal;
+    font-variation-settings: 'wght' 300;
+    color: #C8A882;
+  }
+  .iu-landing-sub {
+    font-size: 16px; font-variation-settings: 'wght' 400;
+    color: #888; line-height: 1.6;
+    max-width: 520px; margin-bottom: 32px;
+  }
+  .iu-landing-actions { display: flex; gap: 12px; }
+  .iu-landing-btn-primary {
+    font-size: 14px; font-variation-settings: 'wght' 500;
+    background: #F0EBE2; color: #0D0D0D;
+    border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;
+  }
+  .iu-landing-btn-ghost {
+    font-size: 14px; font-variation-settings: 'wght' 400;
+    background: none; color: #888;
+    border: 1px solid #2A2A2A; padding: 12px 24px; border-radius: 8px; cursor: pointer;
+  }
+  .iu-landing-features {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid #2A2A2A;
+  }
+  .iu-feature {
+    padding: 32px 40px;
+    border-right: 1px solid #2A2A2A;
+  }
+  .iu-feature:last-child { border-right: none; }
+  .iu-feature-icon { font-size: 20px; margin-bottom: 14px; }
+  .iu-feature-title { font-size: 14px; font-variation-settings: 'wght' 600; color: #F0EBE2; margin-bottom: 8px; }
+  .iu-feature-desc { font-size: 13px; font-variation-settings: 'wght' 400; color: #666; line-height: 1.6; }
+
+  /* ── ARTICLE ── */
+  .iu-article {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #FAFAF8;
+    padding: 64px 40px;
+  }
+  .iu-article-inner { max-width: 660px; margin: 0 auto; }
+  .iu-article-meta { font-size: 11px; font-variation-settings: 'wght' 400; color: #7A6E60; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+  .iu-article-title { font-size: clamp(28px, 4vw, 48px); font-variation-settings: 'wght' 700; color: #1A1208; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .iu-article-lead { font-size: 18px; font-variation-settings: 'wght' 400; color: #3A3028; line-height: 1.6; margin-bottom: 28px; }
+  .iu-article-divider { height: 1px; background: var(--border); margin-bottom: 28px; }
+  .iu-article-body { font-size: 15px; font-variation-settings: 'wght' 400; color: #3A3028; line-height: 1.75; margin-bottom: 20px; }
+  .iu-article-quote {
+    border-left: 3px solid #C8A882;
+    margin: 32px 0;
+    padding: 4px 0 4px 24px;
+    font-size: 17px;
+    font-variation-settings: 'wght' 300;
+    color: #1A1208;
+    line-height: 1.55;
+    font-style: normal;
+  }
+  .iu-article-h2 { font-size: 22px; font-variation-settings: 'wght' 600; color: #1A1208; margin: 36px 0 16px; letter-spacing: -0.01em; }
+
 </style>
 </head>
 <body>
@@ -466,7 +697,7 @@
   <div class="hero-controls">
     <div class="ctrl-group ctrl-text">
       <label>Text</label>
-      <input type="text" id="txt" value="Design" maxlength="30">
+      <input type="text" id="txt" value="Chiara" maxlength="30">
     </div>
     <div class="ctrl-divider"></div>
     <div class="ctrl-group">
@@ -512,7 +743,7 @@
 <section id="specimen">
   <p class="section-label">01 — Specimen</p>
   <div class="pangram">
-    Buvez de ce whisky que le patron juge fameux.
+    The quick brown fox jumps over the lazy dog. Sphinx of black quartz, judge my vow.
   </div>
   <div class="alphabet">
     A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
@@ -547,9 +778,190 @@
   </div>
 </section>
 
+
+<!-- IN USE -->
+<section id="inuse">
+  <p class="section-label">02 — In Use</p>
+
+  <div class="inuse-tabs">
+    <button class="inuse-tab active" onclick="switchInUse('dashboard')">Dashboard</button>
+    <button class="inuse-tab" onclick="switchInUse('landing')">Landing</button>
+    <button class="inuse-tab" onclick="switchInUse('article')">Article</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="inuse-panel active" id="inuse-dashboard">
+    <div class="iu-dashboard">
+      <div class="iu-sidebar">
+        <div class="iu-logo">Lumio</div>
+        <nav class="iu-sidenav">
+          <a class="iu-navitem active">Overview</a>
+          <a class="iu-navitem">Analytics</a>
+          <a class="iu-navitem">Projects</a>
+          <a class="iu-navitem">Team</a>
+          <a class="iu-navitem">Settings</a>
+        </nav>
+        <div class="iu-sidebar-footer">
+          <div class="iu-avatar">GN</div>
+          <div>
+            <div class="iu-name">Gauthier N.</div>
+            <div class="iu-role">Admin</div>
+          </div>
+        </div>
+      </div>
+      <div class="iu-main">
+        <div class="iu-topbar">
+          <div class="iu-page-title">Overview</div>
+          <div class="iu-topbar-right">
+            <div class="iu-badge">Jan 2025</div>
+            <div class="iu-btn-primary">Export</div>
+          </div>
+        </div>
+        <div class="iu-stats">
+          <div class="iu-stat-card">
+            <div class="iu-stat-label">Revenue</div>
+            <div class="iu-stat-value">€84,291</div>
+            <div class="iu-stat-delta up">+12.4%</div>
+          </div>
+          <div class="iu-stat-card">
+            <div class="iu-stat-label">Users</div>
+            <div class="iu-stat-value">12,048</div>
+            <div class="iu-stat-delta up">+8.1%</div>
+          </div>
+          <div class="iu-stat-card">
+            <div class="iu-stat-label">Churn</div>
+            <div class="iu-stat-value">2.3%</div>
+            <div class="iu-stat-delta down">-0.4%</div>
+          </div>
+          <div class="iu-stat-card">
+            <div class="iu-stat-label">NPS</div>
+            <div class="iu-stat-value">67</div>
+            <div class="iu-stat-delta up">+3</div>
+          </div>
+        </div>
+        <div class="iu-bottom-grid">
+          <div class="iu-card">
+            <div class="iu-card-title">Recent Projects</div>
+            <div class="iu-table">
+              <div class="iu-table-row header">
+                <span>Name</span><span>Status</span><span>Due</span>
+              </div>
+              <div class="iu-table-row">
+                <span>Chiara v2</span>
+                <span class="iu-pill green">Active</span>
+                <span>Mar 12</span>
+              </div>
+              <div class="iu-table-row">
+                <span>Brand Refresh</span>
+                <span class="iu-pill yellow">Review</span>
+                <span>Mar 28</span>
+              </div>
+              <div class="iu-table-row">
+                <span>Design System</span>
+                <span class="iu-pill blue">Draft</span>
+                <span>Apr 5</span>
+              </div>
+              <div class="iu-table-row">
+                <span>Mobile App</span>
+                <span class="iu-pill gray">Paused</span>
+                <span>—</span>
+              </div>
+            </div>
+          </div>
+          <div class="iu-card">
+            <div class="iu-card-title">Activity</div>
+            <div class="iu-activity">
+              <div class="iu-activity-item">
+                <div class="iu-activity-dot"></div>
+                <div>
+                  <div class="iu-activity-text">New milestone reached on Chiara v2</div>
+                  <div class="iu-activity-time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="iu-activity-item">
+                <div class="iu-activity-dot"></div>
+                <div>
+                  <div class="iu-activity-text">Sara left a comment on Brand Refresh</div>
+                  <div class="iu-activity-time">Yesterday</div>
+                </div>
+              </div>
+              <div class="iu-activity-item">
+                <div class="iu-activity-dot"></div>
+                <div>
+                  <div class="iu-activity-text">Design System moved to Draft</div>
+                  <div class="iu-activity-time">Jan 28</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANDING -->
+  <div class="inuse-panel" id="inuse-landing">
+    <div class="iu-landing">
+      <div class="iu-landing-nav">
+        <span class="iu-landing-brand">Lumio</span>
+        <div class="iu-landing-navlinks">
+          <a>Product</a><a>Pricing</a><a>About</a>
+        </div>
+        <button class="iu-landing-cta-sm">Get started</button>
+      </div>
+      <div class="iu-landing-hero">
+        <div class="iu-landing-tag">Now in public beta</div>
+        <h1 class="iu-landing-headline">Design tools<br>built for<br><em>teams</em></h1>
+        <p class="iu-landing-sub">Lumio brings your whole design process into one place — from wireframes to handoff. Fast, flexible, and made for collaboration.</p>
+        <div class="iu-landing-actions">
+          <button class="iu-landing-btn-primary">Start for free</button>
+          <button class="iu-landing-btn-ghost">See demo →</button>
+        </div>
+      </div>
+      <div class="iu-landing-features">
+        <div class="iu-feature">
+          <div class="iu-feature-icon">⚡</div>
+          <div class="iu-feature-title">Fast by default</div>
+          <div class="iu-feature-desc">Built on a modern stack so everything stays snappy, even on large files.</div>
+        </div>
+        <div class="iu-feature">
+          <div class="iu-feature-icon">🤝</div>
+          <div class="iu-feature-title">Real-time collaboration</div>
+          <div class="iu-feature-desc">Work with your team simultaneously without conflicts or version chaos.</div>
+        </div>
+        <div class="iu-feature">
+          <div class="iu-feature-icon">🎯</div>
+          <div class="iu-feature-title">Precision handoff</div>
+          <div class="iu-feature-desc">Developers get exactly what they need — specs, assets, tokens.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE -->
+  <div class="inuse-panel" id="inuse-article">
+    <div class="iu-article">
+      <div class="iu-article-inner">
+        <div class="iu-article-meta">Typography · 6 min read</div>
+        <h1 class="iu-article-title">Why variable fonts are the future of interface design</h1>
+        <p class="iu-article-lead">A single file. An infinite range of expression. Variable fonts are changing the way designers think about type — and it's only just beginning.</p>
+        <div class="iu-article-divider"></div>
+        <p class="iu-article-body">For decades, type in digital products meant choosing from a fixed menu of weights — Regular, Bold, maybe SemiBold if you were lucky. Every weight was a separate file, a separate request, a separate compromise between fidelity and performance.</p>
+        <blockquote class="iu-article-quote">
+          "Variable fonts don't just save bandwidth. They give designers a new dimension of expression that static fonts never could."
+        </blockquote>
+        <p class="iu-article-body">With variable fonts, that compromise disappears. The entire weight axis — from hairline to ultra-black — lives in a single file. You pick exactly the weight you need, not the closest approximation. At 432, not 400 or 500.</p>
+        <h2 class="iu-article-h2">Designed for interfaces</h2>
+        <p class="iu-article-body">Interface typography has unique demands. It needs to be legible at 12px and expressive at 80px. It needs to carry hierarchy without shouting. Chiara was designed with these constraints in mind — optimised for screen rendering across the full weight range, from functional body copy to statement display sizes.</p>
+        <p class="iu-article-body">The result is a typeface that feels at home in a dashboard label or a hero headline — without ever feeling like a compromise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- INSTALL -->
 <section id="install">
-  <p class="section-label">02 — Install</p>
+  <p class="section-label">03 — Install</p>
   <div class="install-grid">
     <div class="install-intro">
       One file.<br><em>Every weight.</em>
@@ -614,7 +1026,7 @@ const PALETTES = [
 
 /* ─── STATE ─── */
 let state = {
-  text: 'Design',
+  text: 'Chiara',
   wmin: 400, wmax: 900,
   sz: 64, rows: 8,
   palette: 0,
@@ -785,6 +1197,16 @@ function copyCode(id) {
     const btn = document.querySelector('#tab-' + id + ' .copy-btn');
     btn.textContent = 'Copied';
     setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+
+
+function switchInUse(id) {
+  document.querySelectorAll('.inuse-tab').forEach((b, i) => {
+    b.classList.toggle('active', ['dashboard','landing','article'][i] === id);
+  });
+  document.querySelectorAll('.inuse-panel').forEach(p => {
+    p.classList.toggle('active', p.id === 'inuse-' + id);
   });
 }
 
