@@ -723,7 +723,8 @@ function render() {
   weights.forEach(w => {
     const row = document.createElement('span');
     row.className = 'stripe-row';
-    row.style.cssText = `font-size:${sz}px;height:${sz*1.2}px;font-variation-settings:'wght' ${w};font-feature-settings:${feat};color:${fg};`;
+    const rowHeight = container.clientHeight / weights.length;
+    row.style.cssText = `font-size:${Math.min(sz, rowHeight*0.8)}px;height:${rowHeight}px;font-variation-settings:'wght' ${w};font-feature-settings:${feat};color:${fg};`;
     row.textContent = (text + ' ').repeat(repeat);
     container.appendChild(row);
   });
